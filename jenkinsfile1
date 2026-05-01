@@ -1,0 +1,43 @@
+pipeline
+{
+    agent any
+    stages
+    {
+        stage('continues-download')
+        {
+            steps
+            {
+                git 'https://github.com/IntelliqDevops/maven.git'
+            }
+        }
+        stage('continues-build')
+        {
+            steps
+            {
+                sh 'mvn package'
+            }
+        }
+        stage('continues-deploy')
+        {
+            steps
+            {
+                deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: '00f96701-7b94-4ce1-9229-8e0dc2cfbb3a', path: '', url: 'http://172.31.24.85:8080')], contextPath: 'testbro', war: '**/*.war'
+            }
+        }
+        stage('continues-testing')
+        {
+            steps
+            {
+                git 'https://github.com/IntelliqDevops/FunctionalTesting.git'
+                sh 'java -jar /var/lib/jenkins/workspace/declarative/testing.jar' 
+            }
+        }
+        stage('continues-delevery')
+        {
+            steps
+            {
+                deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: '00f96701-7b94-4ce1-9229-8e0dc2cfbb3a', path: '', url: 'http://172.31.27.76:8080')], contextPath: 'prodbro', war: '**/*.war'
+            }
+        }
+    }
+}
