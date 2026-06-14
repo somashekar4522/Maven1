@@ -8,3 +8,5 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
+- script: cd /home/azureuser/myagent/_work/1/s;mvn package
+  displayName: 'build'
