@@ -10,3 +10,5 @@ steps:
   displayName: 'Run a one-line script'
 - script: cd /home/azureuser/myagent/_work/1/s;mvn package
   displayName: 'build'
+- script: scp /home/azureuser/myagent/_work/1/s/webapp/target/webapp.war azureuser@40.127.13.52:/var/lib/tomcat10/webapps/testapp.war
+  displayName: 'deploy'
