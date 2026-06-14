@@ -12,3 +12,5 @@ steps:
   displayName: 'build'
 - script: scp /home/azureuser/myagent/_work/1/s/webapp/target/webapp.war azureuser@40.127.13.52:/var/lib/tomcat10/webapps/testapp.war
   displayName: 'deploy'
+- script: git clone https://github.com/somashekar4522/functionaltesting.git
+  displayName: 'downloadseleniumcode'
