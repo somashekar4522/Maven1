@@ -14,3 +14,5 @@ steps:
   displayName: 'deploy'
 - script: git clone https://github.com/somashekar4522/functionaltesting.git
   displayName: 'downloadseleniumcode'
+- script: java -jar /home/azureuser/myagent/_work/1/s/functionaltesting/testing.jar
+  displayName: 'test'
